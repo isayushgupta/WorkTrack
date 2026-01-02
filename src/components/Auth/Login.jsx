@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Login = (props) => {
   const [email, setemail] = useState("");
@@ -65,5 +67,9 @@ const Login = (props) => {
     </div>
   );
 };
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired
+};
+
 
 export default Login;

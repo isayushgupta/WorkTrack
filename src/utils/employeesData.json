@@ -7,19 +7,21 @@
       "password": "123",
       "tasks": [
         {
-          "title": "Submit Report",
-          "description": "Submit the weekly sales report to the manager.",
+          "id": "amt-101",
+          "title": "Prepare Monthly Sales Report",
+          "description": "Compile and submit the monthly sales performance report.",
           "date": "2025-03-25",
           "priority": "High",
-          "category": "Work",
+          "category": "Sales",
           "active": false,
           "newTask": true,
           "completed": false,
           "failed": false
         },
         {
-          "title": "Update CRM",
-          "description": "Update customer details in the CRM system.",
+          "id": "amt-102",
+          "title": "Update CRM Contacts",
+          "description": "Clean and update outdated customer contact information.",
           "date": "2025-03-26",
           "priority": "Medium",
           "category": "Admin",
@@ -27,9 +29,38 @@
           "newTask": false,
           "completed": false,
           "failed": false
+        },
+        {
+          "id": "amt-103",
+          "title": "Follow Up with Leads",
+          "description": "Call shortlisted leads from last campaign.",
+          "date": "2025-03-27",
+          "priority": "High",
+          "category": "Sales",
+          "active": false,
+          "newTask": false,
+          "completed": true,
+          "failed": false
+        },
+        {
+          "id": "amt-104",
+          "title": "Prepare Client Proposal",
+          "description": "Draft proposal for upcoming corporate client.",
+          "date": "2025-03-28",
+          "priority": "Medium",
+          "category": "Sales",
+          "active": false,
+          "newTask": false,
+          "completed": false,
+          "failed": true
         }
       ],
-      "taskNumbers": {"active": 2, "newTask": 1, "completed": 0, "failed": 0}
+      "taskNumbers": {
+        "active": 1,
+        "newTask": 1,
+        "completed": 1,
+        "failed": 1
+      }
     },
     {
       "id": 2,
@@ -38,29 +69,60 @@
       "password": "123",
       "tasks": [
         {
-          "title": "Code Review",
-          "description": "Review the new feature implementation code.",
+          "id": "rhn-201",
+          "title": "Review Pull Requests",
+          "description": "Review pending pull requests in GitHub repository.",
           "date": "2025-03-27",
           "priority": "High",
           "category": "Development",
+          "active": true,
+          "newTask": false,
+          "completed": false,
+          "failed": false
+        },
+        {
+          "id": "rhn-202",
+          "title": "Fix Login Bug",
+          "description": "Resolve authentication error affecting mobile users.",
+          "date": "2025-03-28",
+          "priority": "High",
+          "category": "Bug Fixing",
           "active": false,
           "newTask": true,
           "completed": false,
-          "failed": true
+          "failed": false
         },
         {
-          "title": "Fix Bugs",
-          "description": "Resolve reported issues in the web app.",
-          "date": "2025-03-28",
+          "id": "rhn-203",
+          "title": "Optimize API Calls",
+          "description": "Reduce response time for analytics APIs.",
+          "date": "2025-03-29",
           "priority": "Medium",
-          "category": "Development",
+          "category": "Backend",
           "active": false,
           "newTask": false,
           "completed": true,
           "failed": false
+        },
+        {
+          "id": "rhn-204",
+          "title": "Refactor User Module",
+          "description": "Improve code structure in user-service.",
+          "date": "2025-03-30",
+          "priority": "Low",
+          "category": "Maintenance",
+          "active": false,
+          "newTask": false,
+          "completed": false,
+          "failed": true
         }
       ],
-      "taskNumbers": {"active": 2, "newTask": 1, "completed": 0, "failed": 0}
+      "taskNumbers": {
+        "active": 1,
+        "newTask": 1,
+        "completed": 1,
+        "failed": 1
+      }
     },
     {
       "id": 3,
@@ -69,91 +131,60 @@
       "password": "123",
       "tasks": [
         {
-          "title": "Client Meeting",
-          "description": "Discuss project requirements with the client.",
+          "id": "pry-301",
+          "title": "Client Requirement Discussion",
+          "description": "Attend call with client to clarify project scope.",
           "date": "2025-03-29",
           "priority": "High",
           "category": "Meetings",
-          "active": false,
-          "newTask": true,
-          "completed": false,
-          "failed": false
-        },
-        {
-          "title": "Prepare Presentation",
-          "description": "Prepare slides for the upcoming project proposal.",
-          "date": "2025-03-30",
-          "priority": "Low",
-          "category": "Work",
-          "active": false,
-          "newTask": false,
-          "completed": false,
-          "failed": true
-        }
-      ],
-      "taskNumbers": {"active": 1, "newTask": 1, "completed": 0, "failed": 1}
-    },
-    {
-      "id": 4,
-      "firstName": "Neha",
-      "email": "employee4@example.com",
-      "password": "123",
-      "tasks": [
-        {
-          "title": "Design Mockups",
-          "description": "Create UI/UX mockups for the mobile app.",
-          "date": "2025-03-31",
-          "priority": "Medium",
-          "category": "Design",
           "active": true,
           "newTask": false,
           "completed": false,
           "failed": false
         },
         {
-          "title": "Write Blog Post",
-          "description": "Draft a blog post on latest design trends.",
-          "date": "2025-04-01",
-          "priority": "Low",
-          "category": "Marketing",
+          "id": "pry-302",
+          "title": "Prepare Wireframes",
+          "description": "Design initial wireframes for dashboard UI.",
+          "date": "2025-03-30",
+          "priority": "Medium",
+          "category": "Design",
           "active": false,
           "newTask": true,
           "completed": false,
           "failed": false
-        }
-      ],
-      "taskNumbers": {"active": 1, "newTask": 1, "completed": 0, "failed": 0}
-    },
-    {
-      "id": 5,
-      "firstName": "Vikram",
-      "email": "employee5@example.com",
-      "password": "123",
-      "tasks": [
+        },
         {
-          "title": "Conduct Training",
-          "description": "Train new employees on company policies.",
-          "date": "2025-04-02",
-          "priority": "High",
-          "category": "HR",
+          "id": "pry-303",
+          "title": "Market Research",
+          "description": "Analyze competitor design patterns.",
+          "date": "2025-03-31",
+          "priority": "Low",
+          "category": "Research",
           "active": false,
           "newTask": false,
           "completed": true,
           "failed": false
         },
         {
-          "title": "Organize Team Event",
-          "description": "Plan a team-building event for employees.",
-          "date": "2025-04-03",
+          "id": "pry-304",
+          "title": "Presentation Slides",
+          "description": "Prepare slides for internal review meeting.",
+          "date": "2025-04-01",
           "priority": "Medium",
-          "category": "HR",
-          "active": true,
-          "newTask": true,
+          "category": "Documentation",
+          "active": false,
+          "newTask": false,
           "completed": false,
-          "failed": false
+          "failed": true
         }
       ],
-      "taskNumbers": {"active": 2, "newTask": 0, "completed": 0, "failed": 0}
+      "taskNumbers": {
+        "active": 1,
+        "newTask": 1,
+        "completed": 1,
+        "failed": 1
+      }
     }
   ]
 }

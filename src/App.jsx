@@ -1,87 +1,74 @@
-import React, { useContext, useEffect, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
-import { getLocalStorage, setLocalStorage } from "./utils/localstorage";
-import { AuthContext } from "./context/AuthProvider";
+import { AuthContext } from "./context/AuthContext";
+import { getSession, setSession, clearSession } from "./utils/session";
 
 const App = () => {
-  const [user, setuser] = useState("");
-  const authdata = useContext(AuthContext);
-  const [loggedInUserData, setloggedInUserData] = useState(null);
+  const { employees, admin } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const session = getSession();
+    if (session) setUser(session);
+  }, []);
 
   const handleLogin = (email, password) => {
-    if (
-      authdata &&
-      authdata.admin.email == email &&
-      authdata.admin.password == password
-    ) {
-      const admin = authdata.admin;
-
-      if (admin) {
-        setloggedInUserData(admin);
-        localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
-        setuser('admin');
-      }
-      console.log("This is admin");
-    } else if (authdata) {
-      const employee = authdata.employees.find(
-        (e) => email == e.email && password == e.password
-      );
-
-      if (employee) {
-        setuser("employee");
-        setloggedInUserData(employee);
-        localStorage.setItem(
-          "loggedInUser",
-          JSON.stringify({ role: "employee" })
-        );
-        console.log("This is User");
-      } else {
-        alert("Invalid Credentials");
-      }
+    if (admin?.email === email && admin?.password === password) {
+      const session = { role: "admin" };
+      setSession(session);
+      setUser(session);
+      return;
     }
+
+    const employee = employees.find(
+      e => e.email === email && e.password === password
+    );
+
+    if (!employee) return alert("Invalid credentials");
+
+    const session = { role: "employee", id: employee.id };
+    setSession(session);
+    setUser(session);
   };
-
-
-
-
-  // console.log("App.jsx",loggedInUserData);
-  // console.log("App.jsx1",authdata);
-  
-
-  // useEffect(() => {
-  //   if (authdata) {
-  //     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  //     if (loggedInUser) {
-  //       setuser(loggedInUser.role);
-  //     }
-  //   }
-  // }, [authdata]);
 
   const handleLogOut = () => {
-    localStorage.removeItem("loggedInUser");
+    clearSession();
+    setUser(null);
+    window.location.href = "/";
   };
 
+
+  if (!user) {
+    return (
+      <Routes>
+        <Route path="*" element={<Login handleLogin={handleLogin} />} />
+      </Routes>
+    );
+  }
+
   return (
-    <>
-      {!user ? (
-        <Login handleLogin={handleLogin} />
-      ) : (user === "admin") ? (
-        <AdminDashboard handleLogOut={handleLogOut} data={loggedInUserData} />
-      ) : (
-        <EmployeeDashboard
-          handleLogOut={handleLogOut}
-          data={loggedInUserData}
-        />
-      )}
-      
-
-    </>
-
-
-    
+    <Routes>
+      <Route
+        path="/admin"
+        element={<AdminDashboard handleLogOut={handleLogOut} />}
+      />
+      <Route
+        path="/employee"
+        element={
+          <EmployeeDashboard
+            handleLogOut={handleLogOut}
+            data={employees.find(e => e.id === user.id)}
+          />
+        }
+      />
+      <Route
+        path="*"
+        element={<Navigate to={user.role === "admin" ? "/admin" : "/employee"} />}
+      />
+    </Routes>
   );
 };
 
